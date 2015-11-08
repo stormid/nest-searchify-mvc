@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -46,9 +47,17 @@ namespace Nest.Searchify.Mvc.Config
 
         internal static void RegisterParametersBindersInAssembly(Assembly assembly)
         {
-            foreach (var t in assembly.GetExportedTypes().Where(IsParametersType).ToList().Select(parameterTypes => parameterTypes))
+            if (assembly != null)
             {
-                RegisterParametersBinder(t);
+                foreach (
+                    var t in
+                        assembly.GetExportedTypes()
+                            .Where(IsParametersType)
+                            .ToList()
+                            .Select(parameterTypes => parameterTypes))
+                {
+                    RegisterParametersBinder(t);
+                }
             }
         }
 
@@ -69,7 +78,10 @@ namespace Nest.Searchify.Mvc.Config
             bool shouldSkip;
             bool.TryParse(ConfigurationManager.AppSettings[$"{Constants.AppSettingsRoot}SkipParameterBinderRegistration"], out shouldSkip);
 
-            if (!shouldSkip) RegisterParametersBindersInAssembly(Assembly.GetEntryAssembly());
+            if (!shouldSkip)
+            {
+                RegisterParametersBindersInAssembly(HttpContext.Current?.ApplicationInstance.GetType().Assembly);
+            }
         }
     }
 }
