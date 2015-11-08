@@ -69,7 +69,7 @@ namespace Nest.Searchify.Mvc.Config
             bool shouldSkip;
             bool.TryParse(ConfigurationManager.AppSettings[$"{Constants.AppSettingsRoot}SkipParameterBinderRegistration"], out shouldSkip);
 
-            if (!shouldSkip) RegisterParametersBindersInAssembly(Assembly.GetExecutingAssembly());
+            if (!shouldSkip) RegisterParametersBindersInAssembly(Assembly.GetEntryAssembly());
         }
     }
 }

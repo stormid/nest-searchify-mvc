@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Config\ParameterPropertyDescriptor.cs" />
     <Compile Include="Config\Constants.cs" />
+    <Compile Include="Extensions\ParametersHtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\SearchifyMvcConfig.cs" />
     <Compile Include="Config\SearchifyParametersModelBinder.cs" />
