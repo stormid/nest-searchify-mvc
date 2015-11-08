@@ -11,10 +11,10 @@ build:
   project: Nest.Searchify.Mvc.sln
   verbosity: minimal
 after_build:
-  cmd: nuget pack src/Nest.Searchify/Nest.Searchify.csproj -Version %GitVersion_NugetVersion% -IncludeReferencedProjects -Properties "Configuration=%CONFIGURATION%" -Verbosity quiet
+  cmd: nuget pack src/Nest.Searchify.Mvc/Nest.Searchify.Mvc.csproj -Version %GitVersion_NugetVersion% -IncludeReferencedProjects -Properties "Configuration=%CONFIGURATION%" -Verbosity quiet
 test:
   categories:
     except:
     - Integration
 artifacts:
-- path: Nest.Searchify.*.nupkg
+- path: Nest.Searchify.Mvc.*.nupkg
