@@ -80,7 +80,7 @@ namespace Nest.Searchify.Mvc.Config
 
             if (!shouldSkip)
             {
-                RegisterParametersBindersInAssembly(HttpContext.Current?.ApplicationInstance.GetType().Assembly);
+                RegisterParametersBindersInAssembly(HttpContext.Current?.ApplicationInstance.GetType().BaseType?.Assembly);
             }
         }
     }
