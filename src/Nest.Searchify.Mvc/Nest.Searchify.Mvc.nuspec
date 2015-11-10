@@ -13,4 +13,10 @@
     <projectUrl>https://github.com/stormid/Nest-Searchify-Mvc</projectUrl>
     <licenseUrl>https://github.com/stormid/Nest-Searchify-Mvc/blob/master/LICENSE</licenseUrl>
   </metadata>
+  <files>
+    <file src="Templates\SearchifyMvcConfig.cs.pp" target="content\App_Start" />
+    <file src="Templates\Views\Web.config.install.xdt" target="content\Views" />
+    <file src="Templates\Views\Web.config.uninstall.xdt" target="content\Views" />
+    <file src="Templates\Views\Shared\_SearchifyMvcParametersPartial.cshtml" target="content\Views\Shared" />
+  </files>
 </package>

@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nest.Searchify.Mvc", "src\Nest.Searchify.Mvc\Nest.Searchify.Mvc.csproj", "{8B8D1DE8-CC3D-403D-B255-0EE40ADC6F76}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{787F0843-DB5C-4088-AB6E-B8129818ABE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchifyMvcSample", "sample\SearchifyMvcSample\SearchifyMvcSample.csproj", "{99FCCEDD-3C00-4898-A760-F8015661E61C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{8B8D1DE8-CC3D-403D-B255-0EE40ADC6F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B8D1DE8-CC3D-403D-B255-0EE40ADC6F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B8D1DE8-CC3D-403D-B255-0EE40ADC6F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FCCEDD-3C00-4898-A760-F8015661E61C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FCCEDD-3C00-4898-A760-F8015661E61C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FCCEDD-3C00-4898-A760-F8015661E61C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FCCEDD-3C00-4898-A760-F8015661E61C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99FCCEDD-3C00-4898-A760-F8015661E61C} = {787F0843-DB5C-4088-AB6E-B8129818ABE5}
 	EndGlobalSection
 EndGlobal

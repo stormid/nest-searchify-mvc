@@ -48,8 +48,8 @@
       <HintPath>..\..\packages\Nest.Queryify.0.5.0\lib\net452\Nest.Queryify.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nest.Searchify, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nest.Searchify.0.7.0\lib\net452\Nest.Searchify.dll</HintPath>
+    <Reference Include="Nest.Searchify, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nest.Searchify.0.8.0\lib\net452\Nest.Searchify.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -92,12 +92,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\ParameterPropertyDescriptor.cs" />
+    <None Include="Templates\SearchifyMvcConfig.cs.pp" />
+    <Compile Include="Binder\ParameterPropertyDescriptor.cs" />
     <Compile Include="Config\Constants.cs" />
-    <Compile Include="Extensions\ParametersHtmlHelperExtensions.cs" />
+    <Compile Include="HtmlHelpers\ParametersHtmlHelperExtensions.cs" />
+    <Compile Include="HtmlHelpers\UrlHelperSearchActionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Config\SearchifyMvcConfig.cs" />
-    <Compile Include="Config\SearchifyParametersModelBinder.cs" />
+    <Compile Include="Config\SearchifyMvcConfiguration.cs" />
+    <Compile Include="Binder\JsonPropertyModelBinder.cs" />
+    <Content Include="Templates\Views\Shared\_SearchifyMvcParametersPartial.cshtml" />
+    <None Include="Templates\Views\Web.config.uninstall.xdt" />
+    <None Include="Templates\Views\Web.config.install.xdt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Nest.Searchify.Mvc.nuspec" />

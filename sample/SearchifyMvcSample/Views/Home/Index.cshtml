@@ -1,0 +1,55 @@
+﻿@model SampleSearchResults
+@using Nest.Searchify.Extensions
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <p>Use the page querystring to add and alter the parameters listed in the <i>Parameters</i> panel below: e.g. <a href="?q=test&m=1&m=2">like this</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div>
+        <ul class="nav nav-pills nav-justified">
+            <li>
+                <a href="@Url.SearchAction(Model.Parameters)">Search</a>
+            </li>
+            <li>
+                <a href="@Url.SearchAction("Index", Model.Parameters)">Search Action</a>
+            </li>
+            <li>
+                <a href="@Url.SearchAction("Index", new {m = "3"}, Model.Parameters)">Search Action with Options</a>
+            </li>
+            <li>
+                <a href="@Url.SearchPreviousPage(Model.Pagination)">Previous Page</a>
+            </li>
+            <li>
+                <a href="@Url.SearchNextPage(Model.Pagination)">Next Page</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Sample Search</h2>
+
+        <form method="GET" action="@Url.Action("Index")" class="form-inline">
+            @Html.SearchifyMvcRenderParametersAsHiddenInput(m => m.Parameters)
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <h2>Parameters</h2>
+        <pre>@JsonConvert.SerializeObject(Model.Parameters, Formatting.Indented)</pre>
+        <h2>Response</h2>
+        <pre>@JsonConvert.SerializeObject(Model, Formatting.Indented)</pre>
+
+    </div>
+</div>

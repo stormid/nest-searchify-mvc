@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web.Mvc;
-using Nest.Searchify.Queries;
+using Newtonsoft.Json;
 
 namespace Nest.Searchify.Mvc.Config
 {
-    public class SearchifyParametersModelBinder : DefaultModelBinder
+    public class JsonPropertyModelBinder : DefaultModelBinder
     {
         protected override PropertyDescriptorCollection GetModelProperties(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
@@ -16,11 +17,16 @@ namespace Nest.Searchify.Mvc.Config
 
             foreach (var p in GetTypeDescriptor(controllerContext, bindingContext).GetProperties().Cast<PropertyDescriptor>())
             {
-                foreach (var attr in p.Attributes.OfType<ParameterAttribute>())
+                foreach (var attr in p.Attributes.OfType<JsonPropertyAttribute>())
                 {
-                    additional.Add(new ParameterPropertyDescriptor(attr.Name, p));
+                    if (!attr.PropertyName.Equals(p.Name, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        additional.Add(new ParameterPropertyDescriptor(attr.PropertyName, p));
 
-                    if (bindingContext.PropertyMetadata.ContainsKey(p.Name)) bindingContext.PropertyMetadata.Add(attr.Name, bindingContext.PropertyMetadata[p.Name]);
+                        if (bindingContext.PropertyMetadata.ContainsKey(p.Name))
+                            bindingContext.PropertyMetadata.Add(attr.PropertyName,
+                                bindingContext.PropertyMetadata[p.Name]);
+                    }
                 }
             }
 
