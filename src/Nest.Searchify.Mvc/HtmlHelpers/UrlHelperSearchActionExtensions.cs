@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -33,6 +33,43 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
                 }
             }
             return QueryStringParser<TParameters>.TypeParsers.Sort(@this);
+        }
+
+        public static IHtmlString SeoRelPrevNextLinks<TParameters>(this UrlHelper urlHelper,
+            IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
+        {
+            var prev = SeoRelPreviousPageLink(urlHelper, paginationOptions);
+            var next = SeoRelNextPageLink(urlHelper, paginationOptions);
+            var sb = new StringBuilder();
+            sb.AppendLine(prev.ToString());
+            sb.AppendLine(next.ToString());
+            return MvcHtmlString.Create(sb.ToString());
+        }
+
+        public static IHtmlString SeoRelNextPageLink<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
+        {
+            if (paginationOptions.HasNextPage)
+            {
+                var uri = SearchNextPage(urlHelper, paginationOptions);
+                var tag = new TagBuilder("link");
+                tag.MergeAttribute("rel", "next");
+                tag.MergeAttribute("href", uri);
+                return MvcHtmlString.Create(tag.ToString(TagRenderMode.SelfClosing));
+            }
+            return MvcHtmlString.Empty;
+        }
+
+        public static IHtmlString SeoRelPreviousPageLink<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
+        {
+            if (paginationOptions.HasPreviousPage)
+            {
+                var uri = SearchPreviousPage(urlHelper, paginationOptions);
+                var tag = new TagBuilder("link");
+                tag.MergeAttribute("rel", "prev");
+                tag.MergeAttribute("href", uri);
+                return MvcHtmlString.Create(tag.ToString(TagRenderMode.SelfClosing));
+            }
+            return MvcHtmlString.Empty;
         }
 
         public static string SearchNextPage<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()

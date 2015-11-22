@@ -3,14 +3,60 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using Nest.Searchify.Abstractions;
 using Nest.Searchify.Queries;
 using Newtonsoft.Json;
 
 namespace Nest.Searchify.Mvc.HtmlHelpers
 {
+    /*
+
+    public static class PaginationOptionsExtensions
+    {
+        public static IHtmlString SeoRelLinks<TParameters>(this IPaginationOptions<TParameters> paginationOptions,
+            Uri baseUri = null) where TParameters : class, IPagingParameters, ISortingParameters, new()
+        {
+            var prev = SeoRelPreviousPage(paginationOptions, baseUri);
+            var next = SeoRelNextPage(paginationOptions, baseUri);
+            var sb = new StringBuilder(prev.ToHtmlString());
+            sb.AppendLine(next.ToHtmlString());
+            return MvcHtmlString.Create(sb.ToString());
+        }
+
+        public static IHtmlString SeoRelNextPage<TParameters>(this IPaginationOptions<TParameters> paginationOptions, string baseUri = null) where TParameters : class, IPagingParameters, ISortingParameters, new()
+        {
+            if (paginationOptions.HasNextPage)
+            {
+                var nvc = QueryStringParser<TParameters>.Parse(paginationOptions.NextPage());
+                var uri = new UriBuilder(baseUri ?? new Uri("", UriKind.Relative));
+                uri.Query = nvc.ToString();
+                var tag = new TagBuilder("link");
+                tag.Attributes.Add("rel", "next");
+                tag.Attributes.Add("href", uri.ToString());
+                return MvcHtmlString.Create(tag.ToString());
+            }
+            return MvcHtmlString.Empty;
+        }
+
+        public static IHtmlString SeoRelPreviousPage<TParameters>(this IPaginationOptions<TParameters> paginationOptions, string baseUri = null) where TParameters : class, IPagingParameters, ISortingParameters, new()
+        {
+            if (paginationOptions.HasPreviousPage)
+            {
+                var baseUriAuthority = (baseUri ?? HttpContext.Current?.Request.Url.Authority)?.TrimEnd('/');
+                var nvc = QueryStringParser<TParameters>.Parse(paginationOptions.PreviousPage());
+                var tag = new TagBuilder("link");
+                tag.Attributes.Add("rel", "prev");
+                tag.Attributes.Add("href", $"{baseUriAuthority}/?{nvc}");
+                return MvcHtmlString.Create(tag.ToString());
+            }
+            return MvcHtmlString.Empty;
+        }
+    } */
+
     public static class ParametersHtmlHelperExtensions
     {
         /// <summary>

@@ -92,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Templates\SearchifyMvcConfig.cs.pp" />
     <Compile Include="Binder\ParameterPropertyDescriptor.cs" />
     <Compile Include="Config\Constants.cs" />
@@ -106,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Nest.Searchify.Mvc.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\GitVersionTask.3.3.0\build\dotnet\GitVersionTask.targets" Condition="Exists('..\..\packages\GitVersionTask.3.3.0\build\dotnet\GitVersionTask.targets')" />

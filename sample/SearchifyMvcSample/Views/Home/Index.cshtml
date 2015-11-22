@@ -5,6 +5,10 @@
     ViewBag.Title = "Home Page";
 }
 
+@section seo {
+    @Url.SeoRelPrevNextLinks(Model.Pagination)
+}
+
 <div class="row">
     <div class="col-md-12">
         <p>Use the page querystring to add and alter the parameters listed in the <i>Parameters</i> panel below: e.g. <a href="?q=test&m=1&m=2">like this</a>
