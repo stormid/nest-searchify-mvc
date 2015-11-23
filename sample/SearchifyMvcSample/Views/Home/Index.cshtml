@@ -1,12 +1,19 @@
 ﻿@model SampleSearchResults
-@using Nest.Searchify.Extensions
 @using Newtonsoft.Json
 @{
     ViewBag.Title = "Home Page";
 }
 
 @section seo {
-    @Url.SeoRelPrevNextLinks(Model.Pagination)
+    @if (Model.Pagination.HasPreviousPage)
+    {
+        <link rel="prev" href="@Url.SearchifyMvcSearchPreviousPage(Model.Pagination)" />
+    }
+
+    @if (Model.Pagination.HasNextPage)
+    {
+        <link rel="next" href="@Url.SearchifyMvcSearchNextPage(Model.Pagination)"/>
+    }
 }
 
 <div class="row">
@@ -20,19 +27,19 @@
     <div>
         <ul class="nav nav-pills nav-justified">
             <li>
-                <a href="@Url.SearchAction(Model.Parameters)">Search</a>
+                <a href="@Url.SearchifyMvcSearchAction(Model.Parameters)">Search</a>
             </li>
             <li>
-                <a href="@Url.SearchAction("Index", Model.Parameters)">Search Action</a>
+                <a href="@Url.SearchifyMvcSearchAction("Index", Model.Parameters)">Search Action</a>
             </li>
             <li>
-                <a href="@Url.SearchAction("Index", new {m = "3"}, Model.Parameters)">Search Action with Options</a>
+                <a href="@Url.SearchifyMvcSearchAction("Index", new {m = "3"}, Model.Parameters)">Search Action with Options</a>
             </li>
             <li>
-                <a href="@Url.SearchPreviousPage(Model.Pagination)">Previous Page</a>
+                <a href="@Url.SearchifyMvcSearchPreviousPage(Model.Pagination)">Previous Page</a>
             </li>
             <li>
-                <a href="@Url.SearchNextPage(Model.Pagination)">Next Page</a>
+                <a href="@Url.SearchifyMvcSearchNextPage(Model.Pagination)">Next Page</a>
             </li>
         </ul>
     </div>

@@ -35,56 +35,19 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return QueryStringParser<TParameters>.TypeParsers.Sort(@this);
         }
 
-        public static IHtmlString SeoRelPrevNextLinks<TParameters>(this UrlHelper urlHelper,
-            IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
-        {
-            var prev = SeoRelPreviousPageLink(urlHelper, paginationOptions);
-            var next = SeoRelNextPageLink(urlHelper, paginationOptions);
-            var sb = new StringBuilder();
-            sb.AppendLine(prev.ToString());
-            sb.AppendLine(next.ToString());
-            return MvcHtmlString.Create(sb.ToString());
-        }
-
-        public static IHtmlString SeoRelNextPageLink<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
-        {
-            if (paginationOptions.HasNextPage)
-            {
-                var uri = SearchNextPage(urlHelper, paginationOptions);
-                var tag = new TagBuilder("link");
-                tag.MergeAttribute("rel", "next");
-                tag.MergeAttribute("href", uri);
-                return MvcHtmlString.Create(tag.ToString(TagRenderMode.SelfClosing));
-            }
-            return MvcHtmlString.Empty;
-        }
-
-        public static IHtmlString SeoRelPreviousPageLink<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
-        {
-            if (paginationOptions.HasPreviousPage)
-            {
-                var uri = SearchPreviousPage(urlHelper, paginationOptions);
-                var tag = new TagBuilder("link");
-                tag.MergeAttribute("rel", "prev");
-                tag.MergeAttribute("href", uri);
-                return MvcHtmlString.Create(tag.ToString(TagRenderMode.SelfClosing));
-            }
-            return MvcHtmlString.Empty;
-        }
-
-        public static string SearchNextPage<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchNextPage<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
         {
             var uri = paginationOptions.GetNextPageUri(new Uri($"http://tempuri.org{urlHelper.Action()}"));
             return uri.GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         }
 
-        public static string SearchPreviousPage<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchPreviousPage<TParameters>(this UrlHelper urlHelper, IPaginationOptions<TParameters> paginationOptions) where TParameters : Parameters, new()
         {
             var uri = paginationOptions.GetPreviousPageUri(new Uri($"http://tempuri.org{urlHelper.Action()}"));
             return uri.GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var currentNvc = HttpUtility.ParseQueryString(urlHelper.RequestContext.HttpContext.Request.Url?.Query ?? "");
@@ -93,7 +56,7 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return $"{(searchNvc.HasKeys() ? "?" : "")}{searchNvc}";
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, string actionName, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, string actionName, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var baseUri = new Uri($"http://tempuri.org{urlHelper.Action(actionName)}");
@@ -103,7 +66,7 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return $"/{baseUri.GetComponents(UriComponents.Path, UriFormat.Unescaped)}{(searchNvc.HasKeys()?"?" : "")}{searchNvc}";
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, string actionName, RouteValueDictionary routeValues, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, string actionName, RouteValueDictionary routeValues, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var baseUri = new Uri($"http://tempuri.org{urlHelper.Action(actionName, routeValues)}");
@@ -113,7 +76,7 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return $"/{baseUri.GetComponents(UriComponents.Path, UriFormat.Unescaped)}{(searchNvc.HasKeys() ? "?" : "")}{searchNvc}";
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, string actionName, object routeValues, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, string actionName, object routeValues, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var baseUri = new Uri($"http://tempuri.org{urlHelper.Action(actionName, routeValues)}");
@@ -123,7 +86,7 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return $"/{baseUri.GetComponents(UriComponents.Path, UriFormat.Unescaped)}{(searchNvc.HasKeys() ? "?" : "")}{searchNvc}";
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, string actionName, string controllerName, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, string actionName, string controllerName, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var baseUri = new Uri($"http://tempuri.org{urlHelper.Action(actionName, controllerName)}");
@@ -133,7 +96,7 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return $"{baseUri.GetComponents(UriComponents.Path, UriFormat.Unescaped)}{(searchNvc.HasKeys() ? "?" : "")}{searchNvc}";
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, string actionName, string controllerName, RouteValueDictionary routeValues, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, string actionName, string controllerName, RouteValueDictionary routeValues, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var baseUri = new Uri($"http://tempuri.org{urlHelper.Action(actionName, controllerName, routeValues)}");
@@ -143,7 +106,7 @@ namespace Nest.Searchify.Mvc.HtmlHelpers
             return $"/{baseUri.GetComponents(UriComponents.Path, UriFormat.Unescaped)}{(searchNvc.HasKeys() ? "?" : "")}{searchNvc}";
         }
 
-        public static string SearchAction<TParameters>(this UrlHelper urlHelper, string actionName, string controllerName, object routeValues, TParameters parameters) where TParameters : Parameters, new()
+        public static string SearchifyMvcSearchAction<TParameters>(this UrlHelper urlHelper, string actionName, string controllerName, object routeValues, TParameters parameters) where TParameters : Parameters, new()
         {
             var nvc = QueryStringParser<TParameters>.Parse(parameters);
             var baseUri = new Uri($"http://tempuri.org{urlHelper.Action(actionName, controllerName, routeValues)}");
