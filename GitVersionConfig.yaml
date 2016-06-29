@@ -1,6 +1,2 @@
-assembly-versioning-scheme: MajorMinorPatch
 mode: ContinuousDeployment
-branches:
-  feature[/-]:
-    mode: ContinuousDeployment
-    increment: Inherit
+branches: {}
