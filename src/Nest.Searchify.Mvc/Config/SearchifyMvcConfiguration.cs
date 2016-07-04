@@ -40,7 +40,7 @@ namespace Nest.Searchify.Mvc.Config
 
         public IRegisterParameterBindersAction For(Type type)
         {
-            if (IsParametersType(type))
+            if (IsParametersType(type) && !ModelBinders.Binders.ContainsKey(type))
             {
                 ModelBinders.Binders.Add(type, new JsonPropertyModelBinder());
             }
@@ -55,6 +55,7 @@ namespace Nest.Searchify.Mvc.Config
                     var t in
                         assembly.GetExportedTypes()
                             .Where(IsParametersType)
+                            .Where(t => !ModelBinders.Binders.ContainsKey(t))
                             .ToList()
                             .Select(parameterTypes => parameterTypes))
                 {
