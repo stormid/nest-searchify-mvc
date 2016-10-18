@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Nest.Searchify.Mvc.Config
+namespace Nest.Searchify.Mvc.Binder
 {
     internal sealed class ParameterPropertyDescriptor : PropertyDescriptor
     {

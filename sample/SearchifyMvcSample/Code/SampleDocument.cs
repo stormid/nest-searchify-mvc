@@ -1,6 +1,6 @@
 using Nest.Searchify;
 
-namespace SearchifyMvcSample
+namespace SearchifyMvcSample.Code
 {
     public class SampleDocument
     {

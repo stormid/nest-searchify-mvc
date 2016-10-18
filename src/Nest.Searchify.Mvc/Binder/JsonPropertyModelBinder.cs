@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 
-namespace Nest.Searchify.Mvc.Config
+namespace Nest.Searchify.Mvc.Binder
 {
     public class JsonPropertyModelBinder : DefaultModelBinder
     {

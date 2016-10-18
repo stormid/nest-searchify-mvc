@@ -4,7 +4,7 @@ using System.Linq;
 using Nest;
 using Nest.Searchify.SearchResults;
 
-namespace SearchifyMvcSample
+namespace SearchifyMvcSample.Code
 {
     public class SampleSearchResults : SearchResult<SampleParameters, SampleDocument>
     {

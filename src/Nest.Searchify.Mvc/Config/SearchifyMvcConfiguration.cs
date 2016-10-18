@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using Nest.Searchify.Abstractions;
+using Nest.Searchify.Mvc.Binder;
 
 namespace Nest.Searchify.Mvc.Config
 {
