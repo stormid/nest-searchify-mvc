@@ -125,8 +125,8 @@ Task("Build-NuGet-Package")
         var settings = new NuGetPackSettings {
             BasePath = buildOutput,
             Id = "Nest.Searchify.Mvc",
-            Authors = new [] { "Phil Oyston" },
-            Owners = new [] {"Phil Oyston", "Storm ID" },
+            Authors = new [] { "Phil Oyston", "Storm ID" },
+            Owners = new [] {"philo", "StormId" },
             Description = "Provides Mvc specific helpers for the Nest.Searchify library",
             LicenseUrl = new Uri("https://raw.githubusercontent.com/stormid/nest-searchify-mvc/master/LICENSE"),
             ProjectUrl = new Uri("https://github.com/stormid/nest-searchify-mvc"),
@@ -147,7 +147,7 @@ Task("Build-NuGet-Package")
             Dependencies = new [] {
                 new NuSpecDependency { Id = "Nest.Queryify", Version = "0.6.1" },
                 new NuSpecDependency { Id = "Nest.Searchify", Version = "0.9.3" },
-                new NuSpecDependency { Id = "Nest", Version = "[1.6,2]" },
+                new NuSpecDependency { Id = "Nest", Version = "[1.6,6]" },
             }
         };
         NuGetPack("./src/Nest.Searchify.Mvc/Nest.Searchify.Mvc.nuspec", settings);                     
