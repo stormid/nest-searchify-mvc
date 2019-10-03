@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Nest.Searchify;
 using Nest.Searchify.Queries;
-using Nest.Searchify.Queries.Models;
 using Newtonsoft.Json;
 
 namespace SearchifyMvcSample.Code
@@ -14,11 +12,11 @@ namespace SearchifyMvcSample.Code
         [JsonProperty("m")]
         public IEnumerable<string> Multiple { get; set; }
 
-        [JsonProperty("loc")]
-        public GeoPoint Location { get; set; }
+        //[JsonProperty("loc")]
+        //public GeoPoint Location { get; set; }
 
-        [JsonProperty("locbnd")]
-        public GeoBoundingBox Boundary { get; set; }
+        //[JsonProperty("locbnd")]
+        //public GeoBoundingBox Boundary { get; set; }
 
     }
 }
